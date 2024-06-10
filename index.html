@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <style>
+
+      *{
+
+        margin: 0;
+        padding: 0;
+
+      }
+
+      body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            /* padding: 20px; */
+        }
+      
+        h1 {
+            color: #333;
+        }
+
+/*  css for nav bar*/
+        .navbar-custom {
+            background-color: #4CAF50;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: white;
+        }
+        .navbar-custom .nav-link:hover {
+            color: #000000 !important;
+        }
+        .navbar-brand img {
+            height: 50px;
+            width: 50px;
+            /* margin-right: 10px; */
+        }
+/*  css for recent searches*/
+
+        #recentSearches {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ffffff;
+        }
+        th {
+            background-color: #4CAF50;
+            color: rgb(251, 232, 232);
+        }
+        tr:nth-child(even) {
+            background-color: #e2dddd;
+        }
+        tr:hover {
+            background-color: #a20c0c04;
+        }
+
+        #cityInputSection {
+            /* margin-top: 20px;
+            margin-bottom: 20px; */
+            /* background-color: #b60808; */
+            /* display: flex; */
+            margin: 20px 50px;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+        }
+        #cityInputSection input, #cityInputSection button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            /* align-items: center;
+            justify-content: center;
+            align-content: center; */
+        }
+        /* #cityInputSection button {
+            background-color: #b60808;
+            color: white;
+            border: none;
+            cursor: pointer;
+        } */
+        /* #cityInputSection button:hover {
+            background-color: #45a049;
+        } */
+        .searchbtn{
+           background-color: #4CAF50 ;
+           color: white;
+           cursor: pointer;
+           /* border: none; */
+           border-radius: 10px !important;
+
+        }
+        .searchbtn:hover{
+           background-color: #02762b ;
+            /* font-weight: 100; */
+
+        }
+
+        @media only screen and (max-width:990px){
+            #nvsrch{
+                display: none !important;
+            }
+        }
+
+        
+    </style>
+  </head>
+  <body>
+
+    <nav  class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+              <img src="logo.png" alt="Logo"> <strong>Tapman</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class=" collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#"  style="color:#ffffff">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">About this app</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Quick Search
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Delhi</a></li>
+                          <li><a class="dropdown-item" href="#">Mumbai</a></li>
+                          <li><a class="dropdown-item" href="#">Bhopal</a></li>
+                      </ul>
+                  </li>
+              </ul>
+              <form id="nvsrch"  class="d-flex" role="search">
+                  <input id="city" class="form-control me-2" type="search" aria-label="Search" placeholder="Enter city">
+                  <button   class="btn btn-outline-success searchbtn" type="submit" id="submit">Search</button>
+              </form>
+              
+          </div>
+      </div>
+  </nav>
+  <!-- Search Bar for Mobile Screens -->
+  <div id="cityInputSection" class="d-lg-none">
+     <form class="d-flex" role="search">
+                  <input  id="city2"   class="form-control me-2" type="search" aria-label="Search" placeholder="Enter city to ">
+                  <button id="submit2"  class="btn btn-outline-success searchbtn" type="submit" >Search</button>
+              </form>
+   </div>
+
+
+
+    <div class="container py-3">
+     <h2 class="my-4 text-center"> Weather for <span id="cityname"></span></h2>
+      <main>
+
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Temprature</h4>
+              </div>
+              <div class="card-body">
+                <!-- <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"> haha</small></h1> -->
+                <h1 class="card-title pricing-card-title"><span id="temp2"> </span><small class="text-body-secondary fw-light">&#8451;</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Temprature : <span id="temp"></span>   </li>
+                  <li> Cloud_pct  : <span id="cloud_pct"></span><small class="text-body-secondary fw-light"> % </small></li>
+                  <li> Max Temprature : <span id="max_temp"></span> </li>
+                  <!-- <li>Help center access</li> -->
+                  <!-- <li>Min Temprature : <span id="min_temp"></span> </li> -->
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-outline-success">5 day Forecast</button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Humidity Info</h4>
+              </div>
+              <div class="card-body">
+                <!-- <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"> % </small></h1> -->
+                <h1 class="card-title pricing-card-title"><span id="humidity2">  </span><small class="text-body-secondary fw-light"><strong> %</strong> </small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <!-- <li> Cloud_pct is <span id="cloud_pct"></span></li> -->
+                  <li>  Humidity : <span id="humidity"></span></li>
+                  <li> Sunrise : <span id="sunrise"></span></li>
+                  <li> Sunset : <span id="sunset"></span></li>
+                  <!-- <li>10 GB of storage</li>
+                  <li>Priority email support</li>
+                  <li>Help center access</li> -->
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-outline-success"> Sign up for free</button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+              <div class="card-header py-3 ">
+              <!-- <div class="card-header py-3 text-bg-primary border-primary"> -->
+                <h4 class="my-0 fw-normal">Wind_Info</h4>
+              </div>
+              <div class="card-body">
+                <!-- <h1 class="card-title pricing-card-title"> km/h  <small class="text-body-secondary fw-light"></small></h1> -->
+                <h1 class="card-title pricing-card-title"> <span id="wind_speed2"> </span>   <small class="text-body-secondary fw-light"> km/h </small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Wind_speed : <span id="wind_speed"></span></li>
+                  <li>Wind_degrees : <span id="wind_degrees"></span></li>
+                  <li> Feels_like  : <span id="feels_like"></span></li>
+                  <!-- <li>Help center access</li> -->
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-outline-success">Contact us</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div id="recentSearches">
+          <!-- <h2>Recent Searches</h2> -->
+          <h2 class="display-6 text-center mb-4">Recent Searches</h2>
+          <table>
+              <thead>
+                  <tr>
+                      <th>City</th>
+                      <th>Temperature</th>
+                      <th  id="hm">Humidity</th>
+                      <th>Sunrise</th>
+                      <th>Sunset</th>
+                      <th  id="ws">Wind Speed</th>
+                  </tr>
+              </thead>
+              <tbody id="searchTableBody">
+                  <!-- Recent searches will be inserted here -->
+              </tbody>
+          </table>
+        </div>
+    
+        
+      </main>
+    
+      <!-- <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <img class="mb-2" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="24" height="19">
+            <small class="d-block mb-3 text-body-secondary">© 2017–2024</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Features</h5>
+            <ul class="list-unstyled text-small">
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Resources</h5>
+            <ul class="list-unstyled text-small">
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team</a></li>
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer> -->
+    </div>
+    <!--  cards -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="script.js" ></script>
+  </body>
+</html>
+
+
